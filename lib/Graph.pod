@@ -598,6 +598,11 @@ out-degree.
 Return true if the graph is bipartite (also known as 2-colourable, or
 not containing cycles of odd length). Currently only works with undirected graphs.
 
+=item is_biregular
+
+Return true if the graph is undirected bipartite, and all the vertices in
+each partition have the same degree.
+
 =item is_planar
 
 Return true if the graph is planar. The implementation is based on left-right

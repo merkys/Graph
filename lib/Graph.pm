@@ -1877,6 +1877,21 @@ sub is_bipartite {
     return $is_bipartite;
 }
 
+sub is_biregular {
+    my ($g) = @_;
+    return '' unless &is_bipartite;
+    my ($d1, $d2);
+    for ($g->edges) {
+        if (defined $d1 && defined $d2) {
+            return '' unless ($g->degree($_->[0]) == $d1 && $g->degree($_->[1]) == $d2) ||
+                             ($g->degree($_->[0]) == $d2 && $g->degree($_->[1]) == $d1);
+        } else {
+            ($d1, $d2) = map { $g->degree($_) } @$_;
+        }
+    }
+    return 1;
+}
+
 sub is_planar {
     &expect_undirected;
     my ($g) = @_;
