@@ -587,6 +587,12 @@ To find at least one such cycle, see L</find_a_cycle>.
 
 Return true if the graph is acyclic (does not contain any cycles).
 
+=item is_regular
+
+Return true if the graph is regular (all vertices have the same degree).
+For directed graphs, all vertices must have the same in-degree and
+out-degree.
+
 =item is_bipartite
 
 Return true if the graph is bipartite (also known as 2-colourable, or

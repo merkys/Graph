@@ -1845,6 +1845,17 @@ sub directed_copy_attributes {
   $gc;
 }
 
+sub is_regular {
+    my ($g) = @_;
+    require List::Util;
+    if (&is_undirected) {
+        return List::Util::uniqint(map { $g->degree($_) } $g->vertices) <= 1;
+    } else {
+        return List::Util::uniqint(map { $g->in_degree($_) } $g->vertices) <= 1 &&
+            List::Util::all(sub { $g->in_degree($_) == $g->out_degree($_) }, $g->vertices);
+    }
+}
+
 sub is_bipartite {
     &expect_undirected;
     my ($g) = @_;
